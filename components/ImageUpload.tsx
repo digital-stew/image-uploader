@@ -1,45 +1,43 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import styles from "../styles/imageUpload.module.css";
 const dropImage = require("./images/image.svg") as string;
 const finishImage = require("./images/finish.jpg") as string;
-// import dropImage from "./images/image.svg";
 import Image from "next/image";
 
 function ImageUpload() {
   const [loading, setLoading] = useState(false);
   const [finished, setFinished] = useState(false);
+  const [error, setError] = useState("");
+  const [image, setImage] = useState() as any;
+
   const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     e.stopPropagation();
-
-    // set dropEffect to copy i.e copy of the source item
-    // e.dataTransfer.dropEffect = "copy";
-    // dispatch({ type: "SET_IN_DROP_ZONE", inDropZone: true });
   };
 
   function dropHandler(e: React.DragEvent<HTMLDivElement>) {
-    console.log("File(s) dropped");
-
-    // Prevent default behavior (Prevent file from being opened)
     e.preventDefault();
     e.stopPropagation();
-
-    if (e.dataTransfer.items) {
-      // Use DataTransferItemList interface to access the file(s)
-      [...e.dataTransfer.items].forEach((item, i) => {
-        // If dropped items aren't files, reject them
-        if (item.kind === "file") {
-          const file = item.getAsFile();
-          console.log(`… file[${i}].name = ${file?.name}`);
-        }
-      });
-    } else {
-      // Use DataTransfer interface to access the file(s)
-      [...e.dataTransfer.files].forEach((file, i) => {
-        console.log(`… file[${i}].name = ${file.name}`);
-      });
+    if (e.dataTransfer.files.length > 1) {
+      return setError("1 picture at a time please");
     }
+    setImage(e.dataTransfer.files[0]);
   }
+
+  async function upload() {
+    setLoading(true);
+    const formData = new FormData();
+    formData.append("image", image);
+    const res = await fetch("/api/upload", {
+      method: "POST",
+
+      body: formData,
+    });
+    const data = await res.json();
+    setLoading(false);
+    setFinished(true);
+  }
+
   if (!loading && !finished) {
     return (
       <div className={styles.wrapper}>
@@ -54,12 +52,46 @@ function ImageUpload() {
             handleDragOver(e);
           }}
         >
-          <Image src={dropImage} alt="drop image" width="114" height="88" />
-          <p>Drag & Drop your image here</p>
+          {image ? (
+            //keep aspect ratio
+            <Image
+              src={URL.createObjectURL(image)}
+              alt="drop image"
+              layout={"fill"}
+              objectFit={"contain"}
+            />
+          ) : (
+            <>
+              <Image src={dropImage} alt="drop image" width="114" height="88" />{" "}
+              <p>Drag & Drop your image here</p>
+            </>
+          )}
         </div>
 
-        <p>Or</p>
-        <button>Choose a file</button>
+        {image ? (
+          <div>
+            <p></p>
+            <button onClick={() => upload()}>upload</button>
+            <button onClick={() => setImage()}>cancel</button>
+          </div>
+        ) : (
+          <>
+            <p>Or</p>
+            <input
+              style={{ display: "none" }}
+              type="file"
+              id="selectFile"
+              onChange={(e) => setImage(e.target.files[0])}
+            />
+            <button
+              onClick={() => document.getElementById("selectFile").click()}
+            >
+              Choose a file
+            </button>
+          </>
+        )}
+
+        {error && error}
       </div>
     );
   }
