@@ -1,3 +1,4 @@
+"use client";
 import React, { useState, useRef } from "react";
 import styles from "../styles/imageUpload.module.css";
 const dropImage = require("./images/image.svg") as string;
@@ -8,6 +9,7 @@ function ImageUpload() {
   const [loading, setLoading] = useState(false);
   const [finished, setFinished] = useState(false);
   const [error, setError] = useState("");
+  const [downloadLink, setDownloadLink] = useState("");
   const [image, setImage] = useState() as any;
 
   const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
@@ -28,12 +30,13 @@ function ImageUpload() {
     setLoading(true);
     const formData = new FormData();
     formData.append("image", image);
-    const res = await fetch("/api/upload", {
+    const res = await fetch("/api/image/upload", {
       method: "POST",
 
       body: formData,
     });
-    const data = await res.json();
+    const uuid = await res.json();
+    setDownloadLink("http://localhost:3000/api/image/" + uuid);
     setLoading(false);
     setFinished(true);
   }
@@ -107,15 +110,18 @@ function ImageUpload() {
     return (
       <div className={styles.wrapper}>
         <h2>Uploaded Successfully!</h2>
-        <Image
-          src={finishImage}
-          className={styles.finishImage}
-          alt="drop image"
-          width="338"
-          height="224"
-        />
+        <div className={styles.dropZone}>
+          <Image
+            src={URL.createObjectURL(image)}
+            alt="drop image"
+            layout={"fill"}
+            objectFit={"contain"}
+            className={styles.finishImage}
+          />
+        </div>
+
         <div className={styles.downloadLink}>
-          <p>Lorem ipsum dolor sit.</p>
+          <p>{downloadLink}</p>
           <button>Copy Link</button>
         </div>
       </div>
