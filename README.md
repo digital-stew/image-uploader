@@ -1,6 +1,6 @@
 <!-- Please update value in the {}  -->
 
-<h1 align="center">{Your project name}</h1>
+<h1 align="center">{Image uploader}</h1>
 
 <div align="center">
    Solution for a challenge from  <a href="http://devchallenges.io" target="_blank">Devchallenges.io</a>.
@@ -50,13 +50,13 @@ Introduce your projects by taking a screenshot or a gif. Try to tell visitors a 
 
 <!-- This section should list any major frameworks that you built your project using. Here are a few examples.-->
 
-- [React](https://reactjs.org/)
-- [Vue.js](https://vuejs.org/)
-- [Tailwind](https://tailwindcss.com/)
+- [NextJS](https://nextjs.org/)
 
 ## Features
 
 <!-- List the features of your application or follow the template. Don't share the figma file here :) -->
+
+Drag and drop image uploader with the ability to share your download link. gallery page to view the uploaded images from all users. The images are given a uuid to prevent naming collisions and the data is stored in a sqlite3 (SQL) database all of witch is transparent to the user. Using nextJS 13 new experimental "app" dir
 
 This application/site was created as a submission to a [DevChallenges](https://devchallenges.io/challenges) challenge. The [challenge](https://devchallenges.io/challenges/O2iGT9yBd6xZBrOcVirx) was to build an application to complete the given user stories.
 
@@ -68,18 +68,27 @@ To clone and run this application, you'll need [Git](https://git-scm.com) and [N
 
 ```bash
 # Clone this repository
-$ git clone https://github.com/your-user-name/your-project-name
+$ git clone https://github.com/digital-stew/image-uploader
 
 # Install dependencies
 $ npm install
 
-# Run the app
-$ npm start
+# Run the app in dev mode
+$ npm run dev
+
+# Build and run production app
+$ npm run build
+$ npm run start
 ```
 
 ## Acknowledgements
 
 <!-- This section should list any articles or add-ons/plugins that helps you to complete the project. This is optional but it will help you in the future. For example -->
+
+next js
+formidable
+uuid
+sqlite3
 
 - [Steps to replicate a design with only HTML and CSS](https://devchallenges-blogs.web.app/how-to-replicate-design/)
 - [Node.js](https://nodejs.org/)
@@ -87,6 +96,5 @@ $ npm start
 
 ## Contact
 
-- Website [your-website.com](https://{your-web-site-link})
-- GitHub [@your-username](https://{github.com/your-usermame})
-- Twitter [@your-twitter](https://{twitter.com/your-username})
+- Website [https:tux-systems.co.uk](https://tux-systems.co.uk)
+- GitHub [@digital-stew](https://github.com/digital-stew/)

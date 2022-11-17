@@ -48,7 +48,8 @@ header a::before {
   transition: transform 0.3s ease-in-out;
 }
 
-header a:hover::before {
+header a:hover::before,
+header a:focus::before {
   transform-origin: left;
   transform: scaleX(1);
 }
@@ -57,4 +58,6 @@ footer {
   height: 5vh;
   position: relative;
   bottom: 0;
+  text-align: center;
+  margin: 0 auto;
 }

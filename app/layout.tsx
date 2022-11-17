@@ -18,11 +18,16 @@ export default function RootLayout({
           <Link href="/gallery">gallery</Link>
           {test && <Link href="/gallery">gallery</Link>}
         </header>
-        <button onClick={() => setTest(!test)}>click</button>
+        {/* <button onClick={() => setTest(!test)}>click</button> */}
         {children}
 
         <footer>
-          <Navbar />
+          created by
+          <Link href="https://tux-systems.co.uk">Stewart Ridings</Link>
+          {"  -  "}
+          <Link href="https://devchallenges.io/portfolio/digital-stew">
+            devChallenges.io
+          </Link>
         </footer>
       </body>
     </html>
