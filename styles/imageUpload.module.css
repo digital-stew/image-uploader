@@ -13,11 +13,6 @@
   font-style: normal;
   padding: 1rem;
 }
-/* .fileInput::-webkit-file-upload-button {
-  background: black;
-  color: red;
-  padding: 1em;
-} */
 .fileInput[type="file"]::-webkit-textfield-decoration-container {
   display: none;
 }

@@ -1,5 +1,10 @@
 <!-- Please update value in the {}  -->
 
+todo:
+error page
+loading state
+using next 13 new
+
 <h1 align="center">Image uploader</h1>
 
 <div align="center">

@@ -9,23 +9,33 @@ import { dbImage } from "../images";
 async function POST(req: NextApiRequest, res: NextApiResponse) {
   const form = new formidable.IncomingForm();
   form.parse(req, async (_err: Error, fields: undefined, files: any) => {
-    const randomId = await saveFile(files.image);
+    const fileType: string = files.image.originalFilename
+      .split(".")
+      .pop()
+      .toLowerCase();
+
+    if (fileType !== "png" && fileType !== "jpg" && fileType !== "jpeg") {
+      return res.status(415).json({ error: "wrong file type" });
+    }
+
+    const randomId = await saveFile(files.image, fileType);
+
     db.run(
       "INSERT INTO images (fileName, uuid) VALUES (?,?)",
       [files.image.originalFilename, randomId],
       async (err) => {
-        if (err) console.error(err);
+        if (err) return res.status(500).json({ error: err.message });
         res.status(200).json(randomId);
       }
     );
   });
 }
-async function saveFile(file: formidable.File) {
+async function saveFile(file: formidable.File, fileType: string) {
   const data = fs.readFileSync(file.filepath);
   const random = uuid();
-  fs.writeFileSync(`./public/uploaded/${random}`, data);
+  fs.writeFileSync(`./public/uploaded/${random}.${fileType}`, data);
   fs.unlinkSync(file.filepath);
-  return random;
+  return `${random}.${fileType}`;
 }
 
 function GET(req: NextApiRequest, res: NextApiResponse) {
@@ -37,6 +47,7 @@ function GET(req: NextApiRequest, res: NextApiResponse) {
       const filePath = path.resolve(".", "public/uploaded/" + row.uuid);
       const imageBuffer = fs.readFileSync(filePath);
       res.setHeader("Content-Type", "image/jpg");
+      // rename file back to original
       res.setHeader(
         "Content-disposition",
         `attachment; filename=${row.fileName}`
@@ -50,6 +61,7 @@ export const config = {
   api: {
     bodyParser: false,
     externalResolver: true,
+    responseLimit: "10mb",
   },
 };
 

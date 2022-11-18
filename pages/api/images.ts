@@ -7,7 +7,7 @@ export interface dbImage {
 }
 
 function GET(req: NextApiRequest, res: NextApiResponse) {
-  db.all("SELECT * from images", (err, rows: dbImage[]) => {
+  db.all("SELECT * from images", (err: Error, rows: dbImage[]) => {
     if (err) console.error(err);
     res.status(200).json(rows);
   });

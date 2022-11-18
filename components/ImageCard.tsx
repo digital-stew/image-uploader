@@ -1,25 +1,26 @@
-import React from "react";
+"use client";
+import React, { Suspense, useEffect, useState } from "react";
 import Image from "next/image";
 import styles from "../styles/imageCard.module.css";
 import { dbImage } from "../pages/api/images";
-import Link from "next/link";
-
+import path from "path";
 function ImageCard({ uuid, fileName }: dbImage) {
   return (
     <>
-      <Link href={"/api/image/" + uuid} className={styles.link}>
+      <a href={"/api/image/" + uuid}>
         <div className={styles.card}>
-          <div className={styles.image}>
+          <div className={styles.imageWrap}>
             <Image
+              className={styles.image}
               src={"/uploaded/" + uuid}
               alt="drop image"
-              layout={"fill"}
-              objectFit={"contain"}
+              sizes="200px"
+              fill
             />
           </div>
           <p>{fileName}</p>
         </div>
-      </Link>
+      </a>
     </>
   );
 }

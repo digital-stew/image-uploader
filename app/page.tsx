@@ -4,11 +4,7 @@ import ImageUpload from "../components/ImageUpload";
 import "./global.css";
 
 function Page() {
-  return (
-    <div className="imageUpload">
-      <ImageUpload />
-    </div>
-  );
+  return <div className="imageUpload">{<ImageUpload />}</div>;
 }
 
 export default Page;

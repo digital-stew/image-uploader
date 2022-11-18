@@ -16,6 +16,9 @@
   cursor: pointer;
 }
 .image {
+  object-fit: contain;
+}
+.imageWrap {
   position: relative;
   height: 219px;
   width: 338px;

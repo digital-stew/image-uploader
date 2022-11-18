@@ -2,7 +2,6 @@
 import React, { useState, useRef } from "react";
 import styles from "../styles/imageUpload.module.css";
 const dropImage = require("./images/image.svg") as string;
-const finishImage = require("./images/finish.jpg") as string;
 import Image from "next/image";
 
 function ImageUpload() {
@@ -35,10 +34,17 @@ function ImageUpload() {
 
       body: formData,
     });
-    const uuid = await res.json();
-    setDownloadLink("http://localhost:3000/api/image/" + uuid);
-    setLoading(false);
-    setFinished(true);
+
+    if (res.status === 200) {
+      const uuid = await res.json();
+      setDownloadLink("http://localhost:3000/api/image/" + uuid);
+      setLoading(false);
+      setFinished(true);
+    } else {
+      const data = await res.json();
+      setError(data.error);
+      setLoading(false);
+    }
   }
 
   if (!loading && !finished) {
@@ -60,8 +66,11 @@ function ImageUpload() {
             <Image
               src={URL.createObjectURL(image)}
               alt="drop image"
-              layout={"fill"}
-              objectFit={"contain"}
+              // layout={"fill"}
+              // objectFit={"contain"}
+              sizes="200px"
+              fill
+              style={{ objectFit: "contain" }}
             />
           ) : (
             <>
@@ -75,7 +84,14 @@ function ImageUpload() {
           <div>
             <p></p>
             <button onClick={() => upload()}>upload</button>
-            <button onClick={() => setImage()}>cancel</button>
+            <button
+              onClick={() => {
+                setImage();
+                setError("");
+              }}
+            >
+              cancel
+            </button>
           </div>
         ) : (
           <>
@@ -114,9 +130,9 @@ function ImageUpload() {
           <Image
             src={URL.createObjectURL(image)}
             alt="drop image"
-            layout={"fill"}
-            objectFit={"contain"}
+            fill
             className={styles.finishImage}
+            style={{ objectFit: "contain" }}
           />
         </div>
 
