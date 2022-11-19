@@ -13,11 +13,7 @@ using next 13 new
 
 <div align="center">
   <h3>
-    <a href="https://{your-demo-link.your-domain}">
-      Demo
-    </a>
-    <span> | </span>
-    <a href="https://{your-url-to-the-solution}">
+    <a href="https://https://tux-systems.co.uk:10005">
       Solution
     </a>
     <span> | </span>
@@ -42,6 +38,8 @@ using next 13 new
 
 ## Overview
 
+![screenshot](https://tux-systems.co.uk:10005/screenshot.png)
+
 - Drag and drop image sharing app made with next js 13 using the new experimental "app" directory.
 - Self hosted on my home server with full SSL
 
@@ -55,7 +53,7 @@ using next 13 new
 
 <!-- List the features of your application or follow the template. Don't share the figma file here :) -->
 
-Drag and drop image uploader with the ability to share your download link. gallery page to view the uploaded images from all users. The images are given a uuid to prevent naming collisions and the data is stored in a sqlite3 (SQL) database all of witch is transparent to the user. Using nextJS 13 new experimental "app" directory.
+Drag and drop image uploader with the ability to share your download link. gallery page to view the uploaded images from all users. The images are given a uuid to prevent naming collisions and the data is stored in a sqlite3 (SQL) database all of witch is transparent to the user. Using nextJS 13 new experimental "app" directory. i have also provided some SSL keys for testing purposes.
 
 Create a env file to change default values:
 
@@ -63,9 +61,9 @@ Create a env file to change default values:
 
 ```bash
 SQL_DATABASE="./image.db"
-SSL_KEY="./keys/key.pem"
-SSL_CERT="./keys/cert.pem"
 ```
+
+edit server.js to add production SSL keys.
 
 This application/site was created as a submission to a [DevChallenges](https://devchallenges.io/challenges) challenge. The [challenge](https://devchallenges.io/challenges/O2iGT9yBd6xZBrOcVirx) was to build an application to complete the given user stories.
 
