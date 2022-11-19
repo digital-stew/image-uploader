@@ -13,7 +13,7 @@ using next 13 new
 
 <div align="center">
   <h3>
-    <a href="https://https://tux-systems.co.uk:10005">
+    <a href="https://tux-systems.co.uk:10005">
       Solution
     </a>
     <span> | </span>
