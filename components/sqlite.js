@@ -12,16 +12,4 @@ var db = new sqlite3.Database(process.env.SQL_DATABASE || './image.db', sqlite3.
 
 });
 
-const runSQL = (sql, data, next) => {
-    return new Promise((resolve, reject) => {
-        db.all(sql, data, (err, results) => {
-            if (err) {
-                next(err)
-            } else {
-                resolve(results)
-            }
-        })
-    })
-}
-
-module.exports = { db, runSQL }
+module.exports = { db }

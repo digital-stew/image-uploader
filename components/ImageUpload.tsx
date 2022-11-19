@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import styles from "../styles/imageUpload.module.css";
 const dropImage = require("./images/image.svg") as string;
 import Image from "next/image";
@@ -76,8 +76,6 @@ function ImageUpload() {
             <Image
               src={URL.createObjectURL(image)}
               alt="drop image"
-              // layout={"fill"}
-              // objectFit={"contain"}
               sizes="200px"
               fill
               style={{ objectFit: "contain" }}

@@ -42,8 +42,6 @@ using next 13 new
 
 ## Overview
 
-![screenshot](https://user-images.githubusercontent.com/16707738/92399059-5716eb00-f132-11ea-8b14-bcacdc8ec97b.png)
-
 - Drag and drop image sharing app made with next js 13 using the new experimental "app" directory.
 - Self hosted on my home server with full SSL
 
@@ -87,9 +85,9 @@ $ npm install
 # Run the app in dev mode
 $ npm run dev
 
-# Build and run production app
+# Build and run production app. administrator privileges needed to start server on port 443
 $ npm run build
-$ node server.js
+$ npm run start
 ```
 
 ## Acknowledgements

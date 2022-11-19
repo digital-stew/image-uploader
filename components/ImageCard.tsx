@@ -1,9 +1,8 @@
 "use client";
-import React, { Suspense, useEffect, useState } from "react";
+import React from "react";
 import Image from "next/image";
 import styles from "../styles/imageCard.module.css";
 import { dbImage } from "../pages/api/images";
-import path from "path";
 function ImageCard({ uuid, fileName }: dbImage) {
   return (
     <>

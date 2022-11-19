@@ -14,7 +14,12 @@ async function POST(req: NextApiRequest, res: NextApiResponse) {
       .pop()
       .toLowerCase();
 
-    if (fileType !== "png" && fileType !== "jpg" && fileType !== "jpeg") {
+    if (
+      fileType !== "png" &&
+      fileType !== "jpg" &&
+      fileType !== "jpeg" &&
+      fileType !== "gif"
+    ) {
       return res.status(415).json({ error: "wrong file type" });
     }
 

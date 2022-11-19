@@ -16,17 +16,6 @@
 .fileInput[type="file"]::-webkit-textfield-decoration-container {
   display: none;
 }
-/* .fileInput[type="file"]::file-selector-button {
-  border: 2px solid #6c5ce7;
-  padding: 0.2em 0.4em;
-  border-radius: 0.2em;
-  background-color: #a29bfe;
-  transition: 1s;
-} */
-/* .fileInput[type="file"]::file-selector-button:hover {
-  animation: 1s ease-in-out pulse;
-} */
-
 .wrapper h2 {
   font-size: 18px;
   line-height: 27px;
