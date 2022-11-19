@@ -5,7 +5,7 @@ error page
 loading state
 using next 13 new
 
-<h1 align="center">Image uploader</h1>
+<h1 align="center">Image uploader and gallery</h1>
 
 <div align="center">
    Solution for a challenge from  <a href="http://devchallenges.io" target="_blank">Devchallenges.io</a>.
@@ -32,7 +32,7 @@ using next 13 new
 ## Table of Contents
 
 - [Overview](#overview)
-  - [Built With](#built-with)
+- [Built With](#built-with)
 - [Features](#features)
 - [How to use](#how-to-use)
 - [Contact](#contact)
@@ -44,12 +44,8 @@ using next 13 new
 
 ![screenshot](https://user-images.githubusercontent.com/16707738/92399059-5716eb00-f132-11ea-8b14-bcacdc8ec97b.png)
 
-Introduce your projects by taking a screenshot or a gif. Try to tell visitors a story about your project by answering:
-
-- Where can I see your demo?
-- What was your experience?
-- What have you learned/improved?
-- Your wisdom? :)
+- Drag and drop image sharing app made with next js 13 using the new experimental "app" directory.
+- Self hosted on my home server with full SSL
 
 ### Built With
 
@@ -61,7 +57,17 @@ Introduce your projects by taking a screenshot or a gif. Try to tell visitors a 
 
 <!-- List the features of your application or follow the template. Don't share the figma file here :) -->
 
-Drag and drop image uploader with the ability to share your download link. gallery page to view the uploaded images from all users. The images are given a uuid to prevent naming collisions and the data is stored in a sqlite3 (SQL) database all of witch is transparent to the user. Using nextJS 13 new experimental "app" dir
+Drag and drop image uploader with the ability to share your download link. gallery page to view the uploaded images from all users. The images are given a uuid to prevent naming collisions and the data is stored in a sqlite3 (SQL) database all of witch is transparent to the user. Using nextJS 13 new experimental "app" directory.
+
+Create a env file to change default values:
+
+- ".env.local"
+
+```bash
+SQL_DATABASE="./image.db"
+SSL_KEY="./keys/key.pem"
+SSL_CERT="./keys/cert.pem"
+```
 
 This application/site was created as a submission to a [DevChallenges](https://devchallenges.io/challenges) challenge. The [challenge](https://devchallenges.io/challenges/O2iGT9yBd6xZBrOcVirx) was to build an application to complete the given user stories.
 
@@ -83,7 +89,7 @@ $ npm run dev
 
 # Build and run production app
 $ npm run build
-$ npm run start
+$ node server.js
 ```
 
 ## Acknowledgements

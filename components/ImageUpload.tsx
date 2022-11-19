@@ -8,6 +8,7 @@ function ImageUpload() {
   const [loading, setLoading] = useState(false);
   const [finished, setFinished] = useState(false);
   const [error, setError] = useState("");
+  const [msg, setMsg] = useState("");
   const [downloadLink, setDownloadLink] = useState("");
   const [image, setImage] = useState() as any;
 
@@ -37,7 +38,7 @@ function ImageUpload() {
 
     if (res.status === 200) {
       const uuid = await res.json();
-      setDownloadLink("http://localhost:3000/api/image/" + uuid);
+      setDownloadLink(window.location.origin + "/api/image/" + uuid);
       setLoading(false);
       setFinished(true);
     } else {
@@ -45,6 +46,15 @@ function ImageUpload() {
       setError(data.error);
       setLoading(false);
     }
+  }
+
+  function linkToClipboard() {
+    const copyText = document.getElementById("downloadLink").innerText;
+    navigator.clipboard.writeText(copyText);
+    setMsg("copied to clipboard");
+    setTimeout(() => {
+      setMsg("");
+    }, 2000);
   }
 
   if (!loading && !finished) {
@@ -137,9 +147,10 @@ function ImageUpload() {
         </div>
 
         <div className={styles.downloadLink}>
-          <p>{downloadLink}</p>
-          <button>Copy Link</button>
+          <p id="downloadLink">{downloadLink}</p>
+          <button onClick={() => linkToClipboard()}>Copy Link</button>
         </div>
+        <p>{msg && msg}</p>
       </div>
     );
   }

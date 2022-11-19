@@ -7,7 +7,6 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const [test, setTest] = useState(false);
   return (
     <html>
       <head />
@@ -18,6 +17,7 @@ export default function RootLayout({
         </header>
         {children}
         <footer>
+          <p>CAUTION!! all uploaded files are public </p>
           created by
           <Link href="https://tux-systems.co.uk">Stewart Ridings</Link>
           {"  -  "}

@@ -8,8 +8,8 @@ const app = next({ dev: false });
 const handle = app.getRequestHandler();
 
 const httpsOptions = {
-    key: fs.readFileSync("./keys/key.pem"),
-    cert: fs.readFileSync("./keys/cert.pem")
+    key: fs.readFileSync(process.env.SSL_KEY || "./keys/key.pem"),
+    cert: fs.readFileSync(process.env.SSL_CERT || "./keys/cert.pem")
 };
 
 app.prepare().then(() => {
@@ -18,6 +18,6 @@ app.prepare().then(() => {
         handle(req, res, parsedUrl);
     }).listen(port, (err) => {
         if (err) throw err;
-        console.log("ready - started server on url: https://localhost:" + port);
+        console.log("ready - started server on port: " + port);
     });
 });

@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@500&family=Poppins:wght@500&display=swap");
-
+:root {
+  --primary-color: #6c5ce7;
+}
 body {
   margin: 0;
 }
@@ -12,7 +14,7 @@ body {
   margin: 0;
 }
 .imageUpload {
-  height: 90vh;
+  height: 85vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -40,7 +42,7 @@ header a::before {
   width: 100%;
   height: 2px;
   border-radius: 4px;
-  background-color: #6c5ce7;
+  background-color: var(--primary-color);
   bottom: 0;
   left: 0;
   transform-origin: right;

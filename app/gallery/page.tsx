@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import ImageCard from "../../components/ImageCard";
 import { dbImage } from "../../pages/api/images";
 import styles from "./page.module.css";
-// import Loading from "./loading";
 function Page() {
   const [images, setImages] = useState<dbImage[]>([]);
 
