@@ -38,7 +38,7 @@ using next 13 new
 
 ## Overview
 
-![screenshot](https://tux-systems.co.uk:10005/screenshot.png)
+![screenshot](https://raw.githubusercontent.com/digital-stew/image-uploader/main/public/screenshot.png)
 
 - Drag and drop image sharing app made with next js 13 using the new experimental "app" directory.
 - Self hosted on my home server with full SSL
