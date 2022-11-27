@@ -6,12 +6,12 @@ import { dbImage } from "../pages/api/images";
 function ImageCard({ uuid, fileName }: dbImage) {
   return (
     <>
-      <a href={"/api/image/" + uuid}>
+      <a href={"/image-uploader/api/image/" + uuid}>
         <div className={styles.card}>
           <div className={styles.imageWrap}>
             <img
               className={styles.image}
-              src={"/uploaded/" + uuid}
+              src={"/image-uploader/uploaded/" + uuid}
               alt="drop image"
               sizes="200px"
             />

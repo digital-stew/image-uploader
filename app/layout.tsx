@@ -11,10 +11,7 @@ export default function RootLayout({
     <html>
       <head />
       <body>
-        <header>
-          <Link href="/">upload</Link>
-          <Link href="/gallery">gallery</Link>
-        </header>
+
         {children}
         <footer>
           <p>CAUTION!! all uploaded files are public </p>

@@ -30,7 +30,7 @@ function ImageUpload() {
     setLoading(true);
     const formData = new FormData();
     formData.append("image", image);
-    const res = await fetch("/api/image/upload", {
+    const res = await fetch("/image-uploader/api/image/upload", {
       method: "POST",
 
       body: formData,
@@ -38,7 +38,7 @@ function ImageUpload() {
 
     if (res.status === 200) {
       const uuid = await res.json();
-      setDownloadLink(window.location.origin + "/api/image/" + uuid);
+      setDownloadLink(window.location.origin + "/image-uploader/api/image/" + uuid);
       setLoading(false);
       setFinished(true);
     } else {

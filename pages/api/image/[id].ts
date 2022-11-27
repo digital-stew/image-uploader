@@ -73,14 +73,8 @@ export const config = {
 export default function image(req: NextApiRequest, res: NextApiResponse) {
   req.method === "POST"
     ? POST(req, res)
-    : req.method === "PATCH"
-    ? PATCH(req, res)
-    : req.method === "DELETE"
-    ? DELETE(req, res)
-    : req.method === "GET"
-    ? GET(req, res)
-    : res.status(404).send("");
-}
 
-function PATCH(_req: NextApiRequest, _res: NextApiResponse) {}
-function DELETE(_req: NextApiRequest, _res: NextApiResponse) {}
+    : req.method === "GET"
+      ? GET(req, res)
+      : res.status(404).send("");
+}

@@ -8,10 +8,11 @@ function Page() {
 
   useEffect(() => {
     async function getImages() {
-      const res = await fetch("/api/images/");
+      const res = await fetch("https://tux-systems.co.uk/image-uploader/api/images/");
       if (res.status === 200) {
         const data: dbImage[] = await res.json();
         setImages([...data]);
+        console.log(data)
       }
     }
     getImages();
